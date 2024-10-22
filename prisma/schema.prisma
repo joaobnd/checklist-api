@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  email String @unique
+  pswd  String
+}
+
+model Checklist {
+  id                       Int      @id @default(autoincrement())
+  driverEmail              String
+  dateCreated              DateTime @default(now())
+  verificacaoDePneus       Boolean  @default(false)
+  verificacaoDeLuzes       Boolean  @default(false)
+  verificacaoDeFreios      Boolean  @default(false)
+  verificacaoDoTanque      Boolean  @default(false)
+  verificacaoDeEscapamento Boolean  @default(false)
+  verificacaoDeOleos       Boolean  @default(false)
+  verificacaoDeLimpadores  Boolean  @default(false)
+  verificacaoDeSinalizacao Boolean  @default(false)
+  verificacaoDeDocumentos  Boolean  @default(false)
+  problemas                String?
+}
